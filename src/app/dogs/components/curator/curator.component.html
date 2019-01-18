@@ -1,0 +1,71 @@
+<div fxLayout="row">
+  <div fxFlex="60" fxFlexOffset="20">
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div>
+          <h1>Кураторы</h1>
+        </div>
+        <button mat-mini-fab
+                color="accent"
+                style="margin-left: 10px"
+                (click)="add()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-card>
+        <mat-table [(dataSource)]="curators">
+
+          <ng-container matColumnDef="ID">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let curator">
+              {{curator.id}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef>Имя</mat-header-cell>
+            <mat-cell *matCellDef="let curator">
+              {{curator.name}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="PhoneNumber">
+            <mat-header-cell *matHeaderCellDef>Номер телефона</mat-header-cell>
+            <mat-cell *matCellDef="let curator">
+              {{curator.phoneNumber}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DogsCount">
+            <mat-header-cell *matHeaderCellDef>Кол-во собак</mat-header-cell>
+            <mat-cell *matCellDef="let curator">
+              {{curator.dogsCount}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DogsLimit">
+            <mat-header-cell *matHeaderCellDef>Макс. кол-во собак</mat-header-cell>
+            <mat-cell *matCellDef="let curator">
+              {{curator.dogsLimit}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DeleteButton">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let justTeamUser">
+              <button mat-raised-button
+                      color="warn"
+                      class="action-button"
+                      (click)="delete(justTeamUser)">
+                Delete
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+          <mat-row *matRowDef="let curator; columns: tableColumns">
+          </mat-row>
+        </mat-table>
+      </mat-card>
+    </div>
+  </div>
+</div>

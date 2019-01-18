@@ -4,7 +4,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
@@ -23,7 +23,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ]
 })
 export class MaterialModule {
