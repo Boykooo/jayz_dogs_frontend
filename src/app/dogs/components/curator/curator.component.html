@@ -36,7 +36,7 @@
           </ng-container>
 
           <ng-container matColumnDef="dogsCount">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Кол-во собак</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Кол-во собак</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.dogsCount}}
             </mat-cell>
@@ -51,13 +51,14 @@
 
           <ng-container matColumnDef="DeleteButton">
             <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-            <mat-cell *matCellDef="let curator" fxLayoutAlign="space-around center">
+            <mat-cell *matCellDef="let curator" fxLayoutAlign="space-around center" (click)="$event.stopPropagation()">
               <button mat-raised-button
                       color="primary"
                       class="action-button"
                       (click)="edit(curator)">
                 <mat-icon>edit</mat-icon>
               </button>
+
               <button mat-raised-button
                       color="warn"
                       class="action-button"
@@ -69,7 +70,8 @@
 
           <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
           <mat-row *matRowDef="let curator; columns: tableColumns"
-                   class="row-highlight">
+                   class="row-highlight"
+                   (click)="showDogs(curator)">
           </mat-row>
         </mat-table>
         <div fxLayout="row">

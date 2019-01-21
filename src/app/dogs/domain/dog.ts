@@ -1,6 +1,7 @@
 import {Sex} from './sex';
 
 export class Dog {
+  curatorId: number;
   id: number;
   name: string;
   sex: Sex;

@@ -14,6 +14,8 @@ import {MatCardModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CuratorDialogComponent} from './dogs/components/curator/curator-dialog/curator-dialog.component';
 import {ConfirmDialogComponent} from './dogs/components/confirm-dialog/confirm-dialog.component';
+import {DogService} from './dogs/service/dog.service';
+import {DogDialogComponent} from './dogs/components/dog/dog-dialog/dog-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {ConfirmDialogComponent} from './dogs/components/confirm-dialog/confirm-d
     CuratorComponent,
     DogComponent,
     CuratorDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DogDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +37,13 @@ import {ConfirmDialogComponent} from './dogs/components/confirm-dialog/confirm-d
     FlexLayoutModule
   ],
   providers: [
-    CuratorService
+    CuratorService,
+    DogService
   ],
   entryComponents: [
     CuratorDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DogDialogComponent
   ],
   bootstrap: [AppComponent]
 })

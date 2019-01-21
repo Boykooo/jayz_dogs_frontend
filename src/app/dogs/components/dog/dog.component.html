@@ -1,3 +1,85 @@
-<p>
-  dog works!
-</p>
+<div fxLayout="row">
+  <div fxFlex="60" fxFlexOffset="20">
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div>
+          <h1>Собаки</h1>
+        </div>
+        <button mat-mini-fab
+                color="accent"
+                style="margin-left: 10px"
+                (click)="add()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-card>
+        <mat-table [(dataSource)]="dogs" matSort>
+
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+            <mat-cell *matCellDef="let dog">
+              {{dog.id}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Кличка</mat-header-cell>
+            <mat-cell *matCellDef="let dog">
+              {{dog.name}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sex">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Пол</mat-header-cell>
+            <mat-cell *matCellDef="let dog">
+              {{dog.sex === 'FEMALE' ? 'Девочка' : 'Мальчик'}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef>Возраст</mat-header-cell>
+            <mat-cell *matCellDef="let dog">
+              {{dog.age}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="breed">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Порода</mat-header-cell>
+            <mat-cell *matCellDef="let dog">
+              {{dog.breed}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DeleteButton">
+            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+            <mat-cell *matCellDef="let dog" fxLayoutAlign="space-around center">
+              <button mat-raised-button
+                      color="primary"
+                      class="action-button"
+                      (click)="edit(dog)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-raised-button
+                      color="warn"
+                      class="action-button"
+                      (click)="delete(dog)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+          <mat-row *matRowDef="let dog; columns: tableColumns">
+          </mat-row>
+        </mat-table>
+        <div fxLayout="row">
+          <mat-paginator fxFlexOffset="10" fxFlex="80"
+                         [length]="totalDogs"
+                         [pageSize]="elementsPerPage"
+                         [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

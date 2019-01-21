@@ -4,6 +4,7 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource, PageEvent} from '@
 import {Curator} from '../../domain/curator';
 import {CuratorDialogComponent} from './curator-dialog/curator-dialog.component';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-curator',
@@ -24,7 +25,8 @@ export class CuratorComponent implements OnInit {
   sort: MatSort;
 
   constructor(private curatorService: CuratorService,
-              private dialogService: MatDialog) {
+              private dialogService: MatDialog,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -62,9 +64,8 @@ export class CuratorComponent implements OnInit {
             if (this.curators.data.length < this.elementsPerPage) {
               this.curators.data.push(res);
               this.curators._updateChangeSubscription();
-            } else {
-              this.totalCurators++;
             }
+            this.totalCurators++;
           });
       });
   }
@@ -95,6 +96,10 @@ export class CuratorComponent implements OnInit {
           }
         }
       });
+  }
+
+  showDogs(curator: Curator): void {
+    this.router.navigateByUrl('curator/' + curator.id + '/dogs');
   }
 
 }
