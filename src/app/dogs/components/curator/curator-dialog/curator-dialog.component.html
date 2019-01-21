@@ -1,0 +1,27 @@
+<div>
+  <mat-list fxFlex="100">
+    <mat-list-item>
+      <h2>Куратор {{curator.name}}</h2>
+    </mat-list-item>
+    <mat-list-item class="list-item-margin">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Имя" [(ngModel)]="curator.name">
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item class="list-item-margin">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Макс. кол-во собак" [(ngModel)]="curator.dogsLimit">
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item class="list-item-margin">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Номер телефона" [(ngModel)]="curator.phoneNumber">
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item class="list-item-margin">
+      <button mat-raised-button color="primary" style="font-size: 16px" (click)="submit()">
+        Сохранить
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

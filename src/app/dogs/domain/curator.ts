@@ -1,4 +1,4 @@
-export interface Curator {
+export class Curator {
   id: number;
   name: string;
   phoneNumber: string;

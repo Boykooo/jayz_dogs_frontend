@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Curator} from '../domain/curator';
+import {PageableResponse} from '../domain/pageable.response';
 
 @Injectable()
 export class CuratorService {
@@ -12,13 +13,22 @@ export class CuratorService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(page: number, size: number): Observable<Curator[]> {
-    return this.httpClient.get<Curator[]>(
+  getAll(page: number, size: number, sortField: string, sortDirection: string): Observable<PageableResponse<Curator[]>> {
+    console.log(sortField);
+    if (sortField === undefined) {
+      sortField = '';
+      sortDirection = '';
+    }
+    let params = new HttpParams()
+      .set('page', String(page))
+      .set('size', String(size))
+      .set('sortField', sortField)
+      .set('sortDirection', sortDirection);
+
+    return this.httpClient.get<PageableResponse<Curator[]>>(
       this.url,
       {
-        params: new HttpParams()
-          .set('page', String(page))
-          .set('size', String(size))
+        params: params
       }
     );
   }
@@ -46,7 +56,7 @@ export class CuratorService {
   delete(id: number): void {
     this.httpClient.delete(
       this.url + '/' + id
-    );
+    ).subscribe();
   }
 
 

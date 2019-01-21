@@ -13,58 +13,72 @@
         </button>
       </div>
       <mat-card>
-        <mat-table [(dataSource)]="curators">
+        <mat-table [(dataSource)]="curators" matSort>
 
-          <ng-container matColumnDef="ID">
-            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.id}}
             </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="Name">
-            <mat-header-cell *matHeaderCellDef>Имя</mat-header-cell>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Имя</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.name}}
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="PhoneNumber">
-            <mat-header-cell *matHeaderCellDef>Номер телефона</mat-header-cell>
+          <ng-container matColumnDef="phoneNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Номер телефона</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.phoneNumber}}
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="DogsCount">
-            <mat-header-cell *matHeaderCellDef>Кол-во собак</mat-header-cell>
+          <ng-container matColumnDef="dogsCount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Кол-во собак</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.dogsCount}}
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="DogsLimit">
-            <mat-header-cell *matHeaderCellDef>Макс. кол-во собак</mat-header-cell>
+          <ng-container matColumnDef="dogsLimit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Макс. кол-во собак</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.dogsLimit}}
             </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="DeleteButton">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let justTeamUser">
+            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+            <mat-cell *matCellDef="let curator" fxLayoutAlign="space-around center">
+              <button mat-raised-button
+                      color="primary"
+                      class="action-button"
+                      (click)="edit(curator)">
+                <mat-icon>edit</mat-icon>
+              </button>
               <button mat-raised-button
                       color="warn"
                       class="action-button"
-                      (click)="delete(justTeamUser)">
-                Delete
+                      (click)="delete(curator)">
+                <mat-icon>delete</mat-icon>
               </button>
             </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-          <mat-row *matRowDef="let curator; columns: tableColumns">
+          <mat-row *matRowDef="let curator; columns: tableColumns"
+                   class="row-highlight">
           </mat-row>
         </mat-table>
+        <div fxLayout="row">
+          <mat-paginator fxFlexOffset="10" fxFlex="80"
+                         [length]="totalCurators"
+                         [pageSize]="elementsPerPage"
+                         [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
       </mat-card>
     </div>
   </div>

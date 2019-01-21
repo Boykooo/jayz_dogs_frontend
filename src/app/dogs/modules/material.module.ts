@@ -8,7 +8,7 @@ import {
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
-  MatSelectModule,
+  MatSelectModule, MatSortModule,
   MatTableModule
 } from '@angular/material';
 
@@ -24,7 +24,8 @@ import {
     MatInputModule,
     MatListModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatSortModule
   ]
 })
 export class MaterialModule {

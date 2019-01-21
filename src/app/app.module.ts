@@ -12,12 +12,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {CuratorDialogComponent} from './dogs/components/curator/curator-dialog/curator-dialog.component';
+import {ConfirmDialogComponent} from './dogs/components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CuratorComponent,
-    DogComponent
+    DogComponent,
+    CuratorDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
   ],
   providers: [
     CuratorService
+  ],
+  entryComponents: [
+    CuratorDialogComponent,
+    ConfirmDialogComponent
   ],
   bootstrap: [AppComponent]
 })
