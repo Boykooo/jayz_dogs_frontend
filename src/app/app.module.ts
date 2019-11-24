@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './initialy/app.component';
 import {CuratorComponent} from './dogs/components/curator/curator.component';
-import {DogComponent} from './dogs/components/dog/dog.component';
+import {DogComponent} from './dogs/components/dog/dog/dog.component';
 import {RoutingModule} from './dogs/modules/routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialModule} from './dogs/modules/material.module';
@@ -16,6 +16,7 @@ import {CuratorDialogComponent} from './dogs/components/curator/curator-dialog/c
 import {ConfirmDialogComponent} from './dogs/components/confirm-dialog/confirm-dialog.component';
 import {DogService} from './dogs/service/dog.service';
 import {DogDialogComponent} from './dogs/components/dog/dog-dialog/dog-dialog.component';
+import { DogListComponent } from './dogs/components/dog/dog-list/dog-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {DogDialogComponent} from './dogs/components/dog/dog-dialog/dog-dialog.co
     DogComponent,
     CuratorDialogComponent,
     ConfirmDialogComponent,
-    DogDialogComponent
+    DogDialogComponent,
+    DogListComponent
   ],
   imports: [
     BrowserModule,

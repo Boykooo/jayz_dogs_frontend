@@ -1,18 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource, PageEvent} from '@angular/material';
-import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Dog} from '../../domain/dog';
-import {DogService} from '../../service/dog.service';
-import {DogDialogComponent} from './dog-dialog/dog-dialog.component';
-import {Sex} from '../../domain/sex';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
+import { Dog } from '../../../domain/dog';
+import { DogService } from '../../../service/dog.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DogDialogComponent } from '../dog-dialog/dog-dialog.component';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { Sex } from '../../../domain/sex';
 
 @Component({
-  selector: 'app-dog',
-  templateUrl: './dog.component.html',
-  styleUrls: ['./dog.component.css']
+  selector: 'app-dog-list',
+  templateUrl: './dog-list.component.html',
+  styleUrls: ['./dog-list.component.css']
 })
-export class DogComponent implements OnInit {
+export class DogListComponent implements OnInit {
 
   Sex: Sex;
   curatorId: number;
@@ -40,12 +40,9 @@ export class DogComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.dogs.sort = this.sort;
-    this.sort.sortChange.subscribe(event => {
-      this.initPage(this.dogPaginator.pageIndex);
-    });
+    this.sort.sortChange.subscribe(() => this.initPage(this.dogPaginator.pageIndex));
     this.dogPaginator.page
-      .subscribe(
-        (pageEvent: PageEvent) => this.initPage(pageEvent.pageIndex));
+      .subscribe((pageEvent: PageEvent) => this.initPage(pageEvent.pageIndex));
   }
 
   initPage(page: number) {
@@ -95,18 +92,25 @@ export class DogComponent implements OnInit {
   }
 
   delete(dog: Dog): void {
+    event.stopPropagation();
     this.dialogService.open(ConfirmDialogComponent, {width: '300px'})
       .afterClosed()
       .subscribe(confirm => {
         if (confirm) {
-          this.dogService.delete(dog.id);
-          let index = this.dogs.data.indexOf(dog);
-          if (index >= 0) {
-            this.dogs.data.splice(index, 1);
-            this.dogs._updateChangeSubscription();
-          }
+          this.dogService.delete(dog.id).subscribe(() => {
+            let index = this.dogs.data.indexOf(dog);
+            if (index >= 0) {
+              this.dogs.data.splice(index, 1);
+              this.dogs._updateChangeSubscription();
+            }
+          });
         }
       });
+  }
+
+  toDog(dog: Dog) {
+    event.stopPropagation();
+    this.router.navigateByUrl(`curator/${this.curatorId}/dogs/${dog.id}`);
   }
 
 }

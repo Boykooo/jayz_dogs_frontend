@@ -34,7 +34,7 @@ export class DogService {
 
   getById(id: number): Observable<Dog> {
     return this.httpClient.get<Dog>(
-      this.url + '/' + id
+      this.url + '/dog/' + id
     );
   }
 
@@ -52,10 +52,10 @@ export class DogService {
     );
   }
 
-  delete(id: number): void {
-    this.httpClient.delete(
+  delete(id: number): Observable<Object> {
+    return this.httpClient.delete(
       this.url + '/dog/' + id
-    ).subscribe();
+    );
   }
 
 }

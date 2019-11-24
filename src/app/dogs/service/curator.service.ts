@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Curator} from '../domain/curator';
-import {PageableResponse} from '../domain/pageable.response';
+import { environment } from '../../../environments/environment';
+import { Curator } from '../domain/curator';
+import { PageableResponse } from '../domain/pageable.response';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class CuratorService {

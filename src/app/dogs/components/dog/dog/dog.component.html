@@ -1,0 +1,61 @@
+<div fxLayout="row">
+  <div fxFlex="60" fxFlexOffset="20">
+    <mat-card>
+      <button mat-raised-button
+              color="primary"
+              (click)="back()">
+        Назад
+      </button>
+      <div>
+        <mat-list fxFlex="40" fxLayout="column">
+
+          <mat-list-item>
+            <h2>Собака {{dog.name}}</h2>
+          </mat-list-item>
+
+          <mat-list-item fxFlexOffset="5" class="list-item-margin">
+            <mat-form-field fxFlex="100">
+              <input matInput placeholder="Имя" [(ngModel)]="dog.name">
+            </mat-form-field>
+          </mat-list-item>
+
+          <mat-list-item fxFlexOffset="5" class="list-item-margin">
+            <mat-form-field fxFlex="100">
+              <input matInput placeholder="Возраст" [(ngModel)]="dog.age">
+            </mat-form-field>
+          </mat-list-item>
+
+          <mat-list-item fxFlexOffset="5" class="list-item-margin">
+            <mat-form-field fxFlex="100">
+              <mat-select placeholder="Пол" [(ngModel)]="dog.sex">
+                <mat-option value="MALE">
+                  Мальчик
+                </mat-option>
+                <mat-option value="FEMALE">
+                  Девочка
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-list-item>
+
+          <mat-list-item fxFlexOffset="5" class="list-item-margin">
+            <mat-form-field fxFlex="100">
+              <input matInput placeholder="Порода" [(ngModel)]="dog.breed">
+            </mat-form-field>
+          </mat-list-item>
+
+          <mat-list-item fxFlexOffset="5" class="list-item-margin">
+            <button mat-raised-button color="accent" style="font-size: 16px" (click)="save()">
+              Сохранить
+            </button>
+            <button mat-raised-button color="warn" style="font-size: 16px; margin-left: 20px" (click)="delete()">
+              Удалить
+            </button>
+          </mat-list-item>
+
+        </mat-list>
+      </div>
+
+    </mat-card>
+  </div>
+</div>
