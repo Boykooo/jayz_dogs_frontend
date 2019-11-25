@@ -42,6 +42,7 @@ export class DogComponent implements OnInit {
   }
 
   delete(): void {
+    event.preventDefault();
     this.dialogService.open(ConfirmDialogComponent, {width: '300px'})
       .afterClosed()
       .subscribe(confirm => {

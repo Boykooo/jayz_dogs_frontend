@@ -6,7 +6,7 @@
               (click)="back()">
         Назад
       </button>
-      <div>
+      <form (ngSubmit)="save()">
         <mat-list fxFlex="40" fxLayout="column">
 
           <mat-list-item>
@@ -15,19 +15,19 @@
 
           <mat-list-item fxFlexOffset="5" class="list-item-margin">
             <mat-form-field fxFlex="100">
-              <input matInput placeholder="Имя" [(ngModel)]="dog.name">
+              <input matInput placeholder="Имя" name="name" [(ngModel)]="dog.name">
             </mat-form-field>
           </mat-list-item>
 
           <mat-list-item fxFlexOffset="5" class="list-item-margin">
             <mat-form-field fxFlex="100">
-              <input matInput placeholder="Возраст" [(ngModel)]="dog.age">
+              <input matInput placeholder="Возраст" name="age" [(ngModel)]="dog.age">
             </mat-form-field>
           </mat-list-item>
 
           <mat-list-item fxFlexOffset="5" class="list-item-margin">
             <mat-form-field fxFlex="100">
-              <mat-select placeholder="Пол" [(ngModel)]="dog.sex">
+              <mat-select placeholder="Пол" name="sex" [(ngModel)]="dog.sex">
                 <mat-option value="MALE">
                   Мальчик
                 </mat-option>
@@ -40,12 +40,12 @@
 
           <mat-list-item fxFlexOffset="5" class="list-item-margin">
             <mat-form-field fxFlex="100">
-              <input matInput placeholder="Порода" [(ngModel)]="dog.breed">
+              <input matInput placeholder="Порода" name="breed" [(ngModel)]="dog.breed">
             </mat-form-field>
           </mat-list-item>
 
           <mat-list-item fxFlexOffset="5" class="list-item-margin">
-            <button mat-raised-button color="accent" style="font-size: 16px" (click)="save()">
+            <button mat-raised-button color="accent" style="font-size: 16px" type="submit">
               Сохранить
             </button>
             <button mat-raised-button color="warn" style="font-size: 16px; margin-left: 20px" (click)="delete()">
@@ -54,7 +54,7 @@
           </mat-list-item>
 
         </mat-list>
-      </div>
+      </form>
 
     </mat-card>
   </div>
