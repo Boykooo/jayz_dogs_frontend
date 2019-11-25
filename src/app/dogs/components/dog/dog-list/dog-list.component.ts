@@ -110,7 +110,7 @@ export class DogListComponent implements OnInit {
 
   toDog(dog: Dog) {
     event.stopPropagation();
-    this.router.navigateByUrl(`curator/${this.curatorId}/dogs/${dog.id}`);
+    this.router.navigate([dog.id], {relativeTo: this.actRoute});
   }
 
 }
