@@ -10,6 +10,11 @@
     </mat-list-item>
     <mat-list-item class="list-item-margin">
       <mat-form-field fxFlex="100">
+        <input matInput placeholder="Фамилия" [(ngModel)]="curator.lastname">
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item class="list-item-margin">
+      <mat-form-field fxFlex="100">
         <input matInput placeholder="Макс. кол-во собак" [(ngModel)]="curator.dogsLimit">
       </mat-form-field>
     </mat-list-item>

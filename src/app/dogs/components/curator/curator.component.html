@@ -21,10 +21,18 @@
               {{curator.id}}
             </mat-cell>
           </ng-container>
+
           <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Имя</mat-header-cell>
             <mat-cell *matCellDef="let curator">
               {{curator.name}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="lastname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Фамилия</mat-header-cell>
+            <mat-cell *matCellDef="let curator">
+              {{curator.lastname}}
             </mat-cell>
           </ng-container>
 

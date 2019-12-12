@@ -113,4 +113,8 @@ export class DogListComponent implements OnInit {
     this.router.navigate([dog.id], {relativeTo: this.actRoute});
   }
 
+  back() {
+    history.back();
+  }
+
 }

@@ -15,7 +15,7 @@ export class CuratorComponent implements OnInit {
 
   elementsPerPage: number = 5;
   totalCurators: number;
-  tableColumns = ['id', 'name', 'phoneNumber', 'dogsCount', 'dogsLimit', 'DeleteButton'];
+  tableColumns = ['id', 'name', 'lastname', 'phoneNumber', 'dogsCount', 'dogsLimit', 'DeleteButton'];
   curators: MatTableDataSource<Curator> = new MatTableDataSource<Curator>();
 
   @ViewChild(MatPaginator)
