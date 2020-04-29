@@ -1,22 +1,31 @@
-<div>
+<form [formGroup]="validation">
   <mat-list fxFlex="100">
     <mat-list-item>
-      <h2>Собака {{dog.name}}</h2>
+      <h2>Собака {{validation.get('name').value}}</h2>
     </mat-list-item>
     <mat-list-item class="list-item-margin">
       <mat-form-field fxFlex="100">
-        <input matInput placeholder="Имя" [(ngModel)]="dog.name">
+        <input matInput placeholder="Имя" formControlName="name">
+        <mat-error *ngIf="validation.get('name').hasError('required')">
+          Введите имя
+        </mat-error>
       </mat-form-field>
     </mat-list-item>
     <mat-list-item class="list-item-margin">
       <mat-form-field fxFlex="100">
-        <input matInput placeholder="Возраст" [(ngModel)]="dog.age">
+        <input matInput placeholder="Возраст" formControlName="age">
+        <mat-error *ngIf="validation.get('age').hasError('required')">
+          Введите возраст
+        </mat-error>
+        <mat-error *ngIf="validation.get('age').hasError('min')">
+          Возраст должен быть больше 0
+        </mat-error>
       </mat-form-field>
     </mat-list-item>
 
     <mat-list-item class="list-item-margin">
       <mat-form-field fxFlex="100">
-        <mat-select placeholder="Пол" [(ngModel)]="dog.sex">
+        <mat-select placeholder="Пол" formControlName="sex">
           <mat-option value="MALE">
             Мальчик
           </mat-option>
@@ -24,12 +33,18 @@
             Девочка
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="validation.get('sex').hasError('required')">
+          Введите пол
+        </mat-error>
       </mat-form-field>
     </mat-list-item>
 
     <mat-list-item class="list-item-margin">
       <mat-form-field fxFlex="100">
-        <input matInput placeholder="Порода" [(ngModel)]="dog.breed">
+        <input matInput placeholder="Порода" formControlName="breed">
+        <mat-error *ngIf="validation.get('breed').hasError('required')">
+          Введите породу
+        </mat-error>
       </mat-form-field>
     </mat-list-item>
     <mat-list-item class="list-item-margin">
@@ -38,4 +53,4 @@
       </button>
     </mat-list-item>
   </mat-list>
-</div>
+</form>

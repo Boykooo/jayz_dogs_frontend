@@ -1,6 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Dog} from '../../../domain/dog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Dog } from '../../../domain/dog';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-dog-dialog',
@@ -9,21 +10,52 @@ import {Dog} from '../../../domain/dog';
 })
 export class DogDialogComponent {
 
-  dog: Dog;
+  curatorId: number;
+  id: number;
+  validation: FormGroup;
 
-  constructor(private curatorDialog: MatDialogRef<DogDialogComponent>,
+  constructor(private dogDialog: MatDialogRef<DogDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public dogData: Dog) {
+    //ПРАВИЛА ВАЛИДАЦИИ
+    this.validation = new FormGroup({
+        'name': new FormControl('', [Validators.required]),
+        'sex': new FormControl('', [Validators.required]),
+        'age': new FormControl('', [Validators.required, Validators.min(1)]),
+        'breed': new FormControl('', [Validators.required]),
+      }
+    )
   }
 
   ngOnInit(): void {
-    this.dog = new Dog();
-    if (this.dogData) {
-      this.dog = this.dogData;
-    }
+    this.initValidation(this.dogData);
   }
 
   submit() {
-    this.curatorDialog.close(this.dog);
+    if (this.validation.valid) {
+      this.dogDialog.close(this.buildDog());
+    }
+  }
+
+  private buildDog(): Dog {
+    let dog = new Dog();
+    dog.id = this.id;
+    dog.curatorId = this.curatorId;
+    dog.age = this.validation.get('age').value;
+    dog.breed = this.validation.get('breed').value;
+    dog.sex = this.validation.get('sex').value;
+    dog.name = this.validation.get('name').value;
+    return dog;
+  }
+
+  private initValidation(dog: Dog) {
+    if (dog) {
+      this.validation.setValue({
+        'name': dog.name,
+        'sex': dog.sex,
+        'age': dog.age,
+        'breed': dog.breed
+      })
+    }
   }
 
 }
